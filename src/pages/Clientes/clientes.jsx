@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { FaPen } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
 import MyButtonWithPopup from "../../components/Popup"
+import { useEffect } from "react";
 
 class Clientes extends React.Component {
   constructor(props) {
@@ -24,8 +25,6 @@ class Clientes extends React.Component {
 
   componentDidMount() {}
   componentWillUnmount() {}
-
-
 
 
 atualizaNome= (e) => {

@@ -40,25 +40,25 @@ const MyButtonWithPopup = () => {
     event.preventDefault();
     closeModal();
   };
- 
- 
+
+
   const [nome, setNome] = useState();
   const [email, setEmail] = useState();
   const [procedimento, setProcedimento] = useState();
   const [valor, setValor] = useState();
 
 
-  
+
   const payload = {
-    nome:nome,
-    email:email,
-    procedimento:procedimento,
-    valor:valor,
+    nome: nome,
+    email: email,
+    procedimento: procedimento,
+    valor: valor,
   }
   async function main() {
-   
+
     try {
- 
+
       const request = await fetch("http://localhost:3000/users", {
         method: "POST",
         headers: {
@@ -66,39 +66,39 @@ const MyButtonWithPopup = () => {
         },
         body: JSON.stringify(payload)
       });
-  
+
       const response = await request.json();
-  
-       console.log(response)
-  
-    } catch(error) {
+
+      console.log(response.data)
+      alert("foi");
+    } catch (error) {
       if (error.response) {
         toast.error('email ou senha invalidos')
-        
-      } else if (error.response.status === 500){
+
+      } else if (error.response.status === 500) {
         alert("Erro de Servidor");
       }
-  
+
     }
-  
+
   }
-  
- 
+
+
 
   return (
     <div>
-      <ToastContainer/>
+      <ToastContainer />
       <a
-          href="https://calendar.google.com/calendar/u/1/r?pli=1"
-          target="black"
-         className="agenda">
-          <Button color="warning"><VscRepoPull/>Agenda</Button>
-        </a>
+        href="https://calendar.google.com/calendar/u/1/r?pli=1"
+        target="black"
+        className="agenda">
+        <Button color="warning"><VscRepoPull />Agenda</Button>
+      </a>
       <Button onClick={openModal} className="btn_cadastra">
         <HiOutlineUserAdd />
         cadastrar
       </Button>
-      
+
 
       <Modal
         isOpen={isModalOpen}
@@ -110,7 +110,7 @@ const MyButtonWithPopup = () => {
         <form onSubmit={handleSubmit} className="Form_Pop">
           <label className="nome_pop">
             <HiUser className="icon_form" /> Nome:
-            <input type="text" onChange={(e) => setNome(e.target.value)}/>
+            <input type="text" onChange={(e) => setNome(e.target.value)} />
           </label>
 
           <label className="email_pop">
@@ -130,7 +130,7 @@ const MyButtonWithPopup = () => {
           </label>
         </form>
         <div className="btn_pop">
-          <Button variant="success"  onClick={main()}>Salvar</Button>
+          <Button variant="success" onClick={() => main()}>Salvar</Button>
         </div>
       </Modal>
     </div>
